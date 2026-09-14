@@ -145,6 +145,11 @@
 
   <div id="list"></div>
 
+  <section id="emerging-section">
+    <h2 style="font-size:1.1rem;margin:3rem 0 .5rem;font-weight:600">Emerging clusters</h2>
+    <div id="emerging"></div>
+  </section>
+
   <h2 style="font-size:1.1rem;margin:3rem 0 .5rem;font-weight:600">Largest individual buys</h2>
   <table id="recent"><thead><tr>
     <th>Ticker</th><th>Insider</th><th>Date</th>
@@ -187,6 +192,9 @@ function renderLedger(d) {
     notice.textContent = "Showing synthetic demo data. Run a backfill against " +
       "EDGAR to replace it with real filings.";
     notice.classList.remove("hidden");
+  } else {
+    notice.textContent = "";
+    notice.classList.add("hidden");
   }
 }
 
@@ -253,9 +261,10 @@ function render() {
   const list = document.getElementById("list");
   list.innerHTML = "";
   if (!rows.length) {
-    list.innerHTML = `<p class="empty">No clusters yet. Run
-      <code>python3 insider_cluster.py backfill --days 30</code> then
-      <code>export</code>, or loosen the filter.</p>`;
+    list.innerHTML = DATA.clusters.length
+      ? `<p class="empty">No clusters match the current filter.</p>`
+      : `<p class="empty">No 3-insider clusters currently meet the criteria.
+          SEC filings are being monitored continuously.</p>`;
   } else {
     rows.forEach(c => list.appendChild(clusterNode(c)));
   }
@@ -263,8 +272,26 @@ function render() {
     `${rows.length} of ${DATA.clusters.length} shown`;
 }
 
+function renderEmerging(rows) {
+  const section = document.getElementById("emerging-section");
+  const target = document.getElementById("emerging");
+  rows = rows || [];
+  if (!rows.length) {
+    target.innerHTML = `<p class="empty">No 2-insider emerging clusters currently meet the criteria.</p>`;
+    return;
+  }
+  target.innerHTML = "";
+  rows.forEach(c => target.appendChild(clusterNode(c)));
+  section.hidden = false;
+}
+
 function renderRecent(rows) {
-  document.querySelector("#recent tbody").innerHTML = rows.slice(0, 40).map(r => `
+  const body = document.querySelector("#recent tbody");
+  if (!rows || !rows.length) {
+    body.innerHTML = `<tr><td colspan="5">No open-market Form 4 purchases exported yet.</td></tr>`;
+    return;
+  }
+  body.innerHTML = rows.slice(0, 40).map(r => `
     <tr>
       <td><b>${r.ticker || "—"}</b></td>
       <td>${r.owner_name || "—"}${r.officer_title
@@ -281,6 +308,7 @@ fetch("data.json?" + Date.now())
     DATA = d;
     renderLedger(d);
     render();
+    renderEmerging(d.emerging_clusters || []);
     renderRecent(d.recent || []);
   })
   .catch(() => {
