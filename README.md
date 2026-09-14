@@ -17,12 +17,16 @@ python3 insider_cluster.py serve
 Open <http://127.0.0.1:8000>. That's synthetic data so you can see the interface
 working before spending an hour polling EDGAR.
 
+The synthetic tickers used by the self-test are deliberately quarantined from
+production export. `selftest --write-demo` is for local UI development only.
+
 ## Run it on real filings
 
 ```bash
 python3 insider_cluster.py backfill --days 30
 python3 insider_cluster.py prices          # liquidity data for clustered tickers
 python3 insider_cluster.py export
+python3 insider_cluster.py validate-json --path data.json
 python3 insider_cluster.py serve
 ```
 
@@ -32,6 +36,10 @@ EDGAR rejects requests without one. CI reads it from the `INSIDER_UA` secret.
 The first backfill is slow. SEC caps you at 10 requests/second and a weekday
 carries roughly 500–1,500 Form 4 filings, so 30 days takes 1–3 hours. It's
 resumable — already-fetched days are skipped, so Ctrl-C and restart freely.
+
+`export` writes production JSON with `"demo": false`. It refuses to export if
+the SQLite database contains the synthetic self-test tickers (`ACME`, `DILU`,
+`ROUT`, `SOLO`, or `NOIS`).
 
 ## Deploy it free
 
@@ -47,9 +55,28 @@ files. GitHub gives you both at no cost:
 
 Your dashboard lands at `https://<your-username>.github.io/<repo>/`.
 
-The workflow re-polls each weekday morning and commits the refreshed
-`data.json`. Public repos get unlimited Actions minutes, so the running cost is
-zero.
+The first successful workflow run checks whether `insider.db` is a valid
+production database. If it is missing, empty, corrupt, or contaminated with
+demo records, the workflow removes it and runs a clean 30-day backfill:
+
+```bash
+python3 insider_cluster.py backfill --days 30
+python3 insider_cluster.py prices --window 30 --min-insiders 3
+python3 insider_cluster.py export --window 30 --min-insiders 3
+```
+
+After that, scheduled weekday runs keep the database and use a 4-day overlap:
+
+```bash
+python3 insider_cluster.py backfill --days 4
+python3 insider_cluster.py prices --window 30 --min-insiders 3
+python3 insider_cluster.py export --window 30 --min-insiders 3
+```
+
+That overlap is intentional because Form 4 filings can arrive after the trade
+date, and SQLite deduplication prevents duplicate rows. The workflow validates
+`insider.db` and `data.json` before committing, then commits only `insider.db`
+and `data.json` when either file actually changed.
 
 Two things to watch. The repo must be public for free Actions minutes and Pages
 — which means your `insider.db` is public too; that's fine, it's all
@@ -65,6 +92,8 @@ so if Actions runs start failing on 403s, raise `REQ_DELAY` in the script.
 | `prices` | Fetch price and volume for clustered tickers (liquidity gate) |
 | `clusters` | Print ranked clusters to the terminal |
 | `export` | Write `docs/data.json` for the dashboard |
+| `validate-db` | Confirm `insider.db` is a real production database |
+| `validate-json` | Confirm `data.json` is production JSON, not demo data |
 | `serve` | Serve `docs/` on localhost |
 | `selftest` | Offline parse + scoring check on synthetic filings |
 
