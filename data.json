@@ -1,0 +1,338 @@
+{
+ "generated": "2026-09-14T10:55:54+00:00",
+ "demo": true,
+ "window_days": 30,
+ "min_insiders": 3,
+ "stats": {
+  "buys": 6,
+  "sells": 1,
+  "days": 0,
+  "filings": 0
+ },
+ "clusters": [
+  {
+   "cik": "801",
+   "ticker": "ACME",
+   "name": "ACME Industries Inc",
+   "n_insiders": 3,
+   "n_trades": 3,
+   "total": 2176000.0,
+   "first": "2026-09-08",
+   "last": "2026-09-10",
+   "span_days": 2,
+   "planned": false,
+   "buyers": [
+    {
+     "name": "Lee Priya",
+     "title": "Director"
+    },
+    {
+     "name": "Smith John A",
+     "title": "Chief Executive Officer"
+    },
+    {
+     "name": "Okafor Grace",
+     "title": "Chief Financial Officer"
+    }
+   ],
+   "insider_type": "unknown",
+   "last_close": 12.5,
+   "score": 61,
+   "why": [
+    "3 separate insiders buying (+24)",
+    "most senior buyer is CFO (+15)",
+    "one insider lifted their holding 67% (+10)",
+    "all buys inside 2 days (+8)",
+    "$2,176,000 committed (+4)"
+   ],
+   "flags": {}
+  },
+  {
+   "cik": "805",
+   "ticker": "ROUT",
+   "name": "ROUT Corp",
+   "n_insiders": 3,
+   "n_trades": 3,
+   "total": 30000.0,
+   "first": "2026-09-11",
+   "last": "2026-09-11",
+   "span_days": 0,
+   "planned": false,
+   "buyers": [
+    {
+     "name": "Hale Ruth",
+     "title": "Director"
+    },
+    {
+     "name": "Park Jin",
+     "title": "Director"
+    },
+    {
+     "name": "Nkemdi Ada",
+     "title": "Director"
+    }
+   ],
+   "insider_type": "routine",
+   "last_close": null,
+   "score": 25,
+   "why": [
+    "3 separate insiders buying (+24)",
+    "most senior buyer is director (+5)",
+    "all buys inside 0 days (+8)",
+    "these insiders buy on a routine annual schedule (-12)"
+   ],
+   "flags": {}
+  },
+  {
+   "cik": "802",
+   "ticker": "DILU",
+   "name": "DILU Industries Inc",
+   "n_insiders": 3,
+   "n_trades": 3,
+   "total": 724000.0,
+   "first": "2026-09-03",
+   "last": "2026-09-06",
+   "span_days": 3,
+   "planned": false,
+   "buyers": [
+    {
+     "name": "Reid Tom",
+     "title": "Director"
+    },
+    {
+     "name": "Cole Anita",
+     "title": "Director"
+    },
+    {
+     "name": "Vance Marcus",
+     "title": "Chief Executive Officer"
+    }
+   ],
+   "insider_type": "unknown",
+   "last_close": 3.1,
+   "score": 0,
+   "why": [
+    "3 separate insiders buying (+24)",
+    "most senior buyer is CEO (+12)",
+    "all buys inside 3 days (+8)",
+    "Registration or offering document on file - dilution pending (-15)",
+    "Hard to trade: trades at $3.10 and only $240,000 traded daily (-30)"
+   ],
+   "flags": {
+    "offering": "Registration or offering document on file - dilution pending",
+    "illiquid": "Hard to trade: trades at $3.10 and only $240,000 traded daily"
+   }
+  }
+ ],
+ "recent": [
+  {
+   "ticker": "SOLO",
+   "issuer_name": "SOLO Industries Inc",
+   "owner_name": "Chen Wei",
+   "officer_title": "Chief Executive Officer",
+   "txn_date": "2026-09-10",
+   "shares": 80000.0,
+   "price": 30.0,
+   "value": 2400000.0,
+   "plan_10b5_1": 0
+  },
+  {
+   "ticker": "ACME",
+   "issuer_name": "ACME Industries Inc",
+   "owner_name": "Smith John A",
+   "officer_title": "Chief Executive Officer",
+   "txn_date": "2026-09-09",
+   "shares": 90000.0,
+   "price": 12.55,
+   "value": 1129500.0,
+   "plan_10b5_1": 0
+  },
+  {
+   "ticker": "ACME",
+   "issuer_name": "ACME Industries Inc",
+   "owner_name": "Okafor Grace",
+   "officer_title": "Chief Financial Officer",
+   "txn_date": "2026-09-10",
+   "shares": 60000.0,
+   "price": 12.4,
+   "value": 744000.0,
+   "plan_10b5_1": 0
+  },
+  {
+   "ticker": "DILU",
+   "issuer_name": "DILU Industries Inc",
+   "owner_name": "Vance Marcus",
+   "officer_title": "Chief Executive Officer",
+   "txn_date": "2026-09-06",
+   "shares": 40000.0,
+   "price": 8.0,
+   "value": 320000.0,
+   "plan_10b5_1": 0
+  },
+  {
+   "ticker": "ACME",
+   "issuer_name": "ACME Industries Inc",
+   "owner_name": "Lee Priya",
+   "officer_title": "Director",
+   "txn_date": "2026-09-08",
+   "shares": 25000.0,
+   "price": 12.1,
+   "value": 302500.0,
+   "plan_10b5_1": 0
+  },
+  {
+   "ticker": "DILU",
+   "issuer_name": "DILU Industries Inc",
+   "owner_name": "Cole Anita",
+   "officer_title": "Director",
+   "txn_date": "2026-09-05",
+   "shares": 30000.0,
+   "price": 8.1,
+   "value": 243000.0,
+   "plan_10b5_1": 0
+  },
+  {
+   "ticker": "DILU",
+   "issuer_name": "DILU Industries Inc",
+   "owner_name": "Reid Tom",
+   "officer_title": "Director",
+   "txn_date": "2026-09-03",
+   "shares": 20000.0,
+   "price": 8.05,
+   "value": 161000.0,
+   "plan_10b5_1": 0
+  },
+  {
+   "ticker": "ROUT",
+   "issuer_name": "ROUT Corp",
+   "owner_name": "Hale Ruth",
+   "officer_title": "Director",
+   "txn_date": "2023-03-12",
+   "shares": 1000.0,
+   "price": 10.0,
+   "value": 10000.0,
+   "plan_10b5_1": 0
+  },
+  {
+   "ticker": "ROUT",
+   "issuer_name": "ROUT Corp",
+   "owner_name": "Park Jin",
+   "officer_title": "Director",
+   "txn_date": "2023-03-12",
+   "shares": 1000.0,
+   "price": 10.0,
+   "value": 10000.0,
+   "plan_10b5_1": 0
+  },
+  {
+   "ticker": "ROUT",
+   "issuer_name": "ROUT Corp",
+   "owner_name": "Nkemdi Ada",
+   "officer_title": "Director",
+   "txn_date": "2023-03-12",
+   "shares": 1000.0,
+   "price": 10.0,
+   "value": 10000.0,
+   "plan_10b5_1": 0
+  },
+  {
+   "ticker": "ROUT",
+   "issuer_name": "ROUT Corp",
+   "owner_name": "Hale Ruth",
+   "officer_title": "Director",
+   "txn_date": "2024-03-12",
+   "shares": 1000.0,
+   "price": 10.0,
+   "value": 10000.0,
+   "plan_10b5_1": 0
+  },
+  {
+   "ticker": "ROUT",
+   "issuer_name": "ROUT Corp",
+   "owner_name": "Park Jin",
+   "officer_title": "Director",
+   "txn_date": "2024-03-12",
+   "shares": 1000.0,
+   "price": 10.0,
+   "value": 10000.0,
+   "plan_10b5_1": 0
+  },
+  {
+   "ticker": "ROUT",
+   "issuer_name": "ROUT Corp",
+   "owner_name": "Nkemdi Ada",
+   "officer_title": "Director",
+   "txn_date": "2024-03-12",
+   "shares": 1000.0,
+   "price": 10.0,
+   "value": 10000.0,
+   "plan_10b5_1": 0
+  },
+  {
+   "ticker": "ROUT",
+   "issuer_name": "ROUT Corp",
+   "owner_name": "Hale Ruth",
+   "officer_title": "Director",
+   "txn_date": "2025-03-12",
+   "shares": 1000.0,
+   "price": 10.0,
+   "value": 10000.0,
+   "plan_10b5_1": 0
+  },
+  {
+   "ticker": "ROUT",
+   "issuer_name": "ROUT Corp",
+   "owner_name": "Park Jin",
+   "officer_title": "Director",
+   "txn_date": "2025-03-12",
+   "shares": 1000.0,
+   "price": 10.0,
+   "value": 10000.0,
+   "plan_10b5_1": 0
+  },
+  {
+   "ticker": "ROUT",
+   "issuer_name": "ROUT Corp",
+   "owner_name": "Nkemdi Ada",
+   "officer_title": "Director",
+   "txn_date": "2025-03-12",
+   "shares": 1000.0,
+   "price": 10.0,
+   "value": 10000.0,
+   "plan_10b5_1": 0
+  },
+  {
+   "ticker": "ROUT",
+   "issuer_name": "ROUT Corp",
+   "owner_name": "Hale Ruth",
+   "officer_title": "Director",
+   "txn_date": "2026-09-11",
+   "shares": 1000.0,
+   "price": 10.0,
+   "value": 10000.0,
+   "plan_10b5_1": 0
+  },
+  {
+   "ticker": "ROUT",
+   "issuer_name": "ROUT Corp",
+   "owner_name": "Park Jin",
+   "officer_title": "Director",
+   "txn_date": "2026-09-11",
+   "shares": 1000.0,
+   "price": 10.0,
+   "value": 10000.0,
+   "plan_10b5_1": 0
+  },
+  {
+   "ticker": "ROUT",
+   "issuer_name": "ROUT Corp",
+   "owner_name": "Nkemdi Ada",
+   "officer_title": "Director",
+   "txn_date": "2026-09-11",
+   "shares": 1000.0,
+   "price": 10.0,
+   "value": 10000.0,
+   "plan_10b5_1": 0
+  }
+ ]
+}

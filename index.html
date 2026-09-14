@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Insider Radar — clustered open-market buying</title>
+<style>
+  :root {
+    --paper:   #EDEFF1;
+    --surface: #FFFFFF;
+    --ink:     #12232E;
+    --muted:   #5C6B76;
+    --rule:    #CBD3D8;
+    --gain:    #2E6B4F;
+    --warn:    #A2452C;
+    --serif:   Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, serif;
+    --mono:    "SF Mono", "Cascadia Mono", "Roboto Mono", Menlo, Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: var(--serif); font-size: 17px; line-height: 1.55;
+  }
+  .wrap { max-width: 62rem; margin: 0 auto; padding: 3rem 1.25rem 6rem; }
+
+  header { border-bottom: 2px solid var(--ink); padding-bottom: 1.25rem; }
+  h1 { font-size: 1.6rem; font-weight: 600; margin: 0 0 .4rem; letter-spacing: -.01em; }
+  .standfirst { margin: 0; max-width: 46ch; color: var(--muted); }
+
+  .ledger {
+    margin: 1.5rem 0 0; padding: 0; list-style: none;
+    display: flex; flex-wrap: wrap; gap: 0 2.25rem;
+    font-family: var(--mono); font-size: .78rem; color: var(--muted);
+  }
+  .ledger b { font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; }
+
+  .notice {
+    margin: 1.5rem 0 0; padding: .85rem 1rem;
+    border-left: 3px solid var(--warn); background: var(--surface);
+    font-size: .92rem;
+  }
+  .notice.hidden { display: none; }
+
+  .controls {
+    display: flex; flex-wrap: wrap; gap: .75rem; align-items: center;
+    margin: 2.5rem 0 1rem;
+  }
+  input[type=search], select {
+    font: inherit; font-size: .92rem; padding: .4rem .6rem;
+    border: 1px solid var(--rule); background: var(--surface); color: var(--ink);
+  }
+  input[type=search] { flex: 1 1 14rem; min-width: 0; }
+  :focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+  .count { font-family: var(--mono); font-size: .78rem; color: var(--muted); }
+
+  .cluster {
+    background: var(--surface); border: 1px solid var(--rule);
+    border-left: 3px solid var(--rule); margin-bottom: .6rem;
+  }
+  .cluster[data-tier="high"] { border-left-color: var(--gain); }
+  .cluster[data-tier="low"]  { border-left-color: var(--warn); }
+
+  .head {
+    width: 100%; text-align: left; background: none; border: 0; cursor: pointer;
+    font: inherit; color: inherit; padding: .9rem 1rem;
+    display: grid; grid-template-columns: 4.5rem 1fr auto; gap: 1rem; align-items: baseline;
+  }
+  .head:hover .ticker { text-decoration: underline; }
+
+  .score { font-family: var(--mono); font-size: 1.15rem; font-weight: 600;
+           font-variant-numeric: tabular-nums; }
+  .bar { display: block; height: 2px; background: var(--rule); margin-top: .3rem; }
+  .bar i { display: block; height: 100%; background: var(--ink); }
+
+  .ticker { font-weight: 600; }
+  .coname { color: var(--muted); font-size: .88rem; }
+  .facts { font-family: var(--mono); font-size: .78rem; color: var(--muted);
+           text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+  .detail { display: none; padding: 0 1rem 1.1rem; border-top: 1px solid var(--rule); }
+  .cluster.open .detail { display: block; }
+  .detail h3 { font-size: .85rem; font-weight: 600; margin: 1rem 0 .4rem; }
+  .why { list-style: none; margin: 0; padding: 0; font-size: .9rem; }
+  .why li { padding: .2rem 0 .2rem .95rem; position: relative; }
+  .why li::before { content: "+"; position: absolute; left: 0;
+                    font-family: var(--mono); color: var(--gain); }
+  .why li.minus::before { content: "−"; color: var(--warn); }
+  .why li.minus { color: var(--warn); }
+
+  .buyers { margin: 0; padding: 0; font-size: .9rem; }
+  .buyers div { padding: .2rem 0; border-bottom: 1px dotted var(--rule); }
+  .buyers span { color: var(--muted); font-size: .85em; }
+
+  table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+  th { text-align: left; font-weight: 600; font-size: .8rem; color: var(--muted);
+       border-bottom: 1px solid var(--ink); padding: .4rem .5rem .4rem 0; }
+  td { padding: .35rem .5rem .35rem 0; border-bottom: 1px solid var(--rule); }
+  td.num { font-family: var(--mono); text-align: right; font-variant-numeric: tabular-nums;
+           padding-right: 1rem; }
+
+  .empty { padding: 3rem 1rem; text-align: center; color: var(--muted);
+           background: var(--surface); border: 1px solid var(--rule); }
+  .empty code { font-family: var(--mono); font-size: .85em;
+                background: var(--paper); padding: .1rem .3rem; }
+
+  footer { margin-top: 4rem; padding-top: 1.25rem; border-top: 1px solid var(--rule);
+           font-size: .85rem; color: var(--muted); max-width: 54ch; }
+
+  @media (max-width: 34rem) {
+    .head { grid-template-columns: 3.5rem 1fr; }
+    .facts { grid-column: 2; text-align: left; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .head { transition: background .12s ease; }
+    .head:hover { background: #F6F8F9; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Insider Radar</h1>
+    <p class="standfirst">Companies where several insiders bought stock on the
+      open market in the same short window, ranked by a rules-based conviction
+      score. Built from SEC Form 4 filings.</p>
+    <ul class="ledger" id="ledger"></ul>
+  </header>
+
+  <p class="notice hidden" id="notice"></p>
+
+  <div class="controls">
+    <input type="search" id="q" placeholder="Filter by ticker or company"
+           aria-label="Filter by ticker or company">
+    <select id="sort" aria-label="Sort order">
+      <option value="score">Highest score first</option>
+      <option value="total">Largest amount first</option>
+      <option value="insiders">Most insiders first</option>
+      <option value="recent">Most recent first</option>
+    </select>
+    <span class="count" id="count"></span>
+  </div>
+
+  <div id="list"></div>
+
+  <h2 style="font-size:1.1rem;margin:3rem 0 .5rem;font-weight:600">Largest individual buys</h2>
+  <table id="recent"><thead><tr>
+    <th>Ticker</th><th>Insider</th><th>Date</th>
+    <th style="text-align:right">Shares</th><th style="text-align:right">Value</th>
+  </tr></thead><tbody></tbody></table>
+
+  <footer>
+    <p>Form 4 discloses trades by officers, directors and 10% owners within two
+      business days. Scores are hand-set heuristics for deciding what to read
+      next — they are not a validated model and nothing here is investment advice.
+      Data is public domain, from SEC EDGAR.</p>
+  </footer>
+</div>
+
+<script>
+const fmtMoney = n => n == null ? "—" :
+  "$" + Math.round(n).toLocaleString("en-US");
+const fmtNum = n => n == null ? "—" : Math.round(n).toLocaleString("en-US");
+
+let DATA = null;
+
+function tier(score) {
+  if (score >= 55) return "high";
+  if (score < 30) return "low";
+  return "mid";
+}
+
+function renderLedger(d) {
+  const s = d.stats || {};
+  const when = d.generated ? new Date(d.generated).toUTCString().slice(5, 22) : "—";
+  document.getElementById("ledger").innerHTML = `
+    <li>Updated <b>${when}</b></li>
+    <li>Window <b>${d.window_days}d</b></li>
+    <li>Buys recorded <b>${fmtNum(s.buys || 0)}</b></li>
+    <li>Sales recorded <b>${fmtNum(s.sells || 0)}</b></li>
+    <li>Days scanned <b>${fmtNum(s.days || 0)}</b></li>`;
+
+  const notice = document.getElementById("notice");
+  if (d.demo) {
+    notice.textContent = "Showing synthetic demo data. Run a backfill against " +
+      "EDGAR to replace it with real filings.";
+    notice.classList.remove("hidden");
+  }
+}
+
+function clusterNode(c) {
+  const el = document.createElement("article");
+  el.className = "cluster";
+  el.dataset.tier = tier(c.score);
+
+  const why = c.why.map(w => {
+    const neg = /\(-\d+\)/.test(w);
+    return `<li class="${neg ? "minus" : ""}">${w.replace(/\s*\([-+]\d+\)$/, "")}</li>`;
+  }).join("");
+
+  const buyers = c.buyers.map(b =>
+    `<div>${b.name || "—"} <span>${b.title || ""}</span></div>`).join("");
+
+  el.innerHTML = `
+    <button class="head" aria-expanded="false">
+      <span>
+        <span class="score">${c.score}</span>
+        <span class="bar"><i style="width:${c.score}%"></i></span>
+      </span>
+      <span>
+        <span class="ticker">${c.ticker}</span><br>
+        <span class="coname">${c.name}</span>
+      </span>
+      <span class="facts">
+        ${c.n_insiders} insiders · ${c.n_trades} buys${
+          c.insider_type === "routine" ? " · routine buyers" :
+          c.insider_type === "opportunistic" ? " · off-cycle" : ""}<br>
+        ${fmtMoney(c.total)}<br>
+        ${c.first} to ${c.last}
+      </span>
+    </button>
+    <div class="detail">
+      <h3>Why it scored ${c.score}</h3>
+      <ul class="why">${why}</ul>
+      <h3>Who bought</h3>
+      <div class="buyers">${buyers}</div>
+    </div>`;
+
+  const btn = el.querySelector(".head");
+  btn.addEventListener("click", () => {
+    const open = el.classList.toggle("open");
+    btn.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+  return el;
+}
+
+function render() {
+  if (!DATA) return;
+  const q = document.getElementById("q").value.trim().toLowerCase();
+  const sort = document.getElementById("sort").value;
+
+  let rows = DATA.clusters.filter(c =>
+    !q || (c.ticker + " " + c.name).toLowerCase().includes(q));
+
+  const keys = {
+    score: c => c.score, total: c => c.total,
+    insiders: c => c.n_insiders, recent: c => c.last || "",
+  };
+  rows.sort((a, b) => keys[sort](b) > keys[sort](a) ? 1 : -1);
+
+  const list = document.getElementById("list");
+  list.innerHTML = "";
+  if (!rows.length) {
+    list.innerHTML = `<p class="empty">No clusters yet. Run
+      <code>python3 insider_cluster.py backfill --days 30</code> then
+      <code>export</code>, or loosen the filter.</p>`;
+  } else {
+    rows.forEach(c => list.appendChild(clusterNode(c)));
+  }
+  document.getElementById("count").textContent =
+    `${rows.length} of ${DATA.clusters.length} shown`;
+}
+
+function renderRecent(rows) {
+  document.querySelector("#recent tbody").innerHTML = rows.slice(0, 40).map(r => `
+    <tr>
+      <td><b>${r.ticker || "—"}</b></td>
+      <td>${r.owner_name || "—"}${r.officer_title
+          ? ` <span style="color:var(--muted);font-size:.85em">${r.officer_title}</span>` : ""}</td>
+      <td>${r.txn_date || "—"}</td>
+      <td class="num">${fmtNum(r.shares)}</td>
+      <td class="num">${fmtMoney(r.value)}</td>
+    </tr>`).join("");
+}
+
+fetch("data.json?" + Date.now())
+  .then(r => r.ok ? r.json() : Promise.reject(r.status))
+  .then(d => {
+    DATA = d;
+    renderLedger(d);
+    render();
+    renderRecent(d.recent || []);
+  })
+  .catch(() => {
+    document.getElementById("list").innerHTML = `<p class="empty">
+      No <code>data.json</code> found. Generate one with
+      <code>python3 insider_cluster.py selftest --write-demo</code>
+      for sample data, or <code>backfill</code> then <code>export</code>
+      for real filings.</p>`;
+  });
+
+document.getElementById("q").addEventListener("input", render);
+document.getElementById("sort").addEventListener("change", render);
+</script>
+</body>
+</html>
