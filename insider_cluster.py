@@ -41,6 +41,8 @@ WEB_DIR = os.path.dirname(os.path.abspath(__file__))
 # A (grant), M (option exercise), F (tax withholding), G (gift) are
 # compensation plumbing and will drown the dataset if you keep them.
 OPEN_MARKET = {"P", "S"}
+OPEN_MARKET_ACQ_DISP = {"P": "A", "S": "D"}
+DEMO_TICKERS = {"ACME", "DILU", "ROUT", "SOLO", "NOIS"}
 
 # Form types we record from the daily index purely as context. These cost
 # nothing extra - they are already in the index file we download anyway.
@@ -115,6 +117,11 @@ CREATE TABLE IF NOT EXISTS seen_days (
     n_filings  INTEGER,
     fetched_at TEXT
 );
+
+CREATE TABLE IF NOT EXISTS meta (
+    key   TEXT PRIMARY KEY,
+    value TEXT
+);
 """
 
 
@@ -123,6 +130,73 @@ def db_connect(path=DB_PATH):
     con.row_factory = sqlite3.Row
     con.executescript(SCHEMA)
     return con
+
+
+def is_open_market_transaction(row):
+    """True only for genuine open-market Form 4 buys/sells."""
+    code = (row.get("code") or "").upper()
+    if code not in OPEN_MARKET:
+        return False
+    acq_disp = (row.get("acq_disp") or "").upper()
+    expected = OPEN_MARKET_ACQ_DISP[code]
+    return not acq_disp or acq_disp == expected
+
+
+def table_exists(con, name):
+    return con.execute(
+        "SELECT 1 FROM sqlite_master WHERE type='table' AND name=?",
+        (name,)).fetchone() is not None
+
+
+def database_has_demo_data(con):
+    if not table_exists(con, "txns"):
+        return False
+    tickers = tuple(DEMO_TICKERS)
+    qs = ",".join("?" * len(tickers))
+    row = con.execute(f"""
+        SELECT COUNT(*) AS n FROM txns
+        WHERE UPPER(COALESCE(ticker,'')) IN ({qs})
+           OR UPPER(COALESCE(issuer_name,'')) LIKE '%ACME%'
+           OR UPPER(COALESCE(issuer_name,'')) LIKE '%DILU%'
+           OR UPPER(COALESCE(issuer_name,'')) LIKE '%ROUT%'
+    """, tickers).fetchone()
+    if row and row["n"]:
+        return True
+    if table_exists(con, "prices"):
+        row = con.execute(
+            f"SELECT COUNT(*) AS n FROM prices WHERE UPPER(ticker) IN ({qs})",
+            tickers).fetchone()
+        return bool(row and row["n"])
+    return False
+
+
+def production_db_status(path=DB_PATH):
+    if not os.path.exists(path) or os.path.getsize(path) == 0:
+        return False, "no insider.db exists yet"
+    try:
+        con = sqlite3.connect(path)
+        con.row_factory = sqlite3.Row
+    except sqlite3.Error as exc:
+        return False, f"cannot open database: {exc}"
+    try:
+        required = ("txns", "filings", "seen_days")
+        missing = [t for t in required if not table_exists(con, t)]
+        if missing:
+            return False, "missing tables: " + ", ".join(missing)
+        if database_has_demo_data(con):
+            return False, "database contains synthetic self-test tickers"
+        seen = con.execute("SELECT COUNT(*) AS n FROM seen_days").fetchone()["n"]
+        filings = con.execute(
+            "SELECT COALESCE(SUM(n_filings),0) AS n FROM seen_days").fetchone()["n"]
+        if seen <= 0:
+            return False, "database has not scanned any EDGAR days"
+        if filings <= 0:
+            return False, "database scan statistics do not show any filings"
+        return True, f"production database ok: {seen} day(s), {filings} filings scanned"
+    except sqlite3.Error as exc:
+        return False, f"database validation failed: {exc}"
+    finally:
+        con.close()
 
 
 # --------------------------------------------------------------------------
@@ -544,7 +618,8 @@ def classify_insider(con, owner_cik, before_date):
     if not owner_cik:
         return "unknown"
     rows = con.execute(
-        "SELECT txn_date FROM txns WHERE owner_cik=? AND code='P' AND txn_date < ?",
+        "SELECT txn_date FROM txns WHERE owner_cik=? AND code='P' "
+        "AND COALESCE(acq_disp,'A')='A' AND txn_date < ?",
         (owner_cik, before_date)).fetchall()
     dates = []
     for r in rows:
@@ -584,7 +659,8 @@ def find_clusters(con, window_days=30, min_insiders=3, min_value=0,
                   apply_liquidity=True):
     cutoff = (date.today() - timedelta(days=window_days)).isoformat()
     rows = con.execute("""
-        SELECT * FROM txns WHERE code='P' AND txn_date >= ?
+        SELECT * FROM txns
+        WHERE code='P' AND COALESCE(acq_disp,'A')='A' AND txn_date >= ?
         ORDER BY issuer_cik, txn_date""", (cutoff,)).fetchall()
 
     by_issuer = {}
@@ -703,7 +779,7 @@ def cmd_backfill(args):
                 continue
             acc = path.rsplit("/", 1)[-1].replace(".txt", "")
             rows = [r for r in parse_form4(xml_text, acc, key)
-                    if r["code"] in OPEN_MARKET]
+                    if is_open_market_transaction(r)]
             kept += insert_rows(con, rows)
             if args.verbose and i % 200 == 0:
                 print(f"   {i}/{len(form4)}", flush=True)
@@ -768,13 +844,20 @@ def cmd_clusters(args):
 
 def cmd_export(args):
     con = db_connect(args.db)
+    if database_has_demo_data(con):
+        con.close()
+        sys.exit("Refusing to export production data.json: insider.db contains "
+                 "synthetic self-test tickers.")
     clusters = find_clusters(con, args.window, args.min_insiders, args.min_value)
+    emerging = [c for c in find_clusters(con, args.window, 2, args.min_value)
+                if c["n_insiders"] == 2]
 
     recent = [dict(r) for r in con.execute("""
         SELECT ticker, issuer_name, owner_name, officer_title, txn_date,
                shares, price, value, plan_10b5_1
-        FROM txns WHERE code='P' AND COALESCE(value,0) > 0
-        ORDER BY txn_date DESC, value DESC LIMIT 150""")]
+        FROM txns
+        WHERE code='P' AND COALESCE(acq_disp,'A')='A' AND COALESCE(value,0) > 0
+        ORDER BY value DESC, txn_date DESC LIMIT 150""")]
 
     stats = con.execute("""
         SELECT (SELECT COUNT(*) FROM txns WHERE code='P') AS buys,
@@ -785,17 +868,75 @@ def cmd_export(args):
     os.makedirs(WEB_DIR, exist_ok=True)
     payload = {
         "generated": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "demo": False,
         "window_days": args.window,
         "min_insiders": args.min_insiders,
         "stats": dict(stats),
         "clusters": clusters,
+        "emerging_clusters": emerging,
         "recent": recent,
     }
+    con.execute("INSERT OR REPLACE INTO meta VALUES ('mode','production')")
+    con.commit()
     out = os.path.join(WEB_DIR, "data.json")
     with open(out, "w") as fh:
         json.dump(payload, fh, indent=1, default=str)
-    print(f"wrote {out} - {len(clusters)} clusters, {len(recent)} buys")
+    print(f"wrote {out} - {len(clusters)} clusters, "
+          f"{len(emerging)} emerging, {len(recent)} buys")
     con.close()
+
+
+def payload_has_demo_symbols(obj):
+    text = json.dumps(obj, default=str).upper()
+    return any(sym in text for sym in DEMO_TICKERS)
+
+
+def cmd_validate_db(args):
+    ok, msg = production_db_status(args.db)
+    print(msg)
+    if not ok:
+        sys.exit(1)
+
+
+def cmd_validate_json(args):
+    try:
+        with open(args.path, "r", encoding="utf-8") as fh:
+            payload = json.load(fh)
+    except (OSError, json.JSONDecodeError) as exc:
+        sys.exit(f"{args.path} is not valid JSON: {exc}")
+
+    errors = []
+    if payload.get("demo") is not False:
+        errors.append("demo must be false")
+    if payload_has_demo_symbols(payload):
+        errors.append("synthetic tickers are present")
+
+    stats = payload.get("stats") or {}
+    days = stats.get("days") or 0
+    filings = stats.get("filings") or 0
+    buys = stats.get("buys") or 0
+    sells = stats.get("sells") or 0
+    if not args.allow_empty:
+        if days <= 0:
+            errors.append("stats.days must be positive")
+        if filings <= 0:
+            errors.append("stats.filings must be positive")
+        if buys + sells <= 0:
+            errors.append("no open-market transactions were exported")
+
+    if not isinstance(payload.get("clusters"), list):
+        errors.append("clusters must be a list")
+    if not isinstance(payload.get("emerging_clusters", []), list):
+        errors.append("emerging_clusters must be a list")
+    if not isinstance(payload.get("recent"), list):
+        errors.append("recent must be a list")
+
+    if errors:
+        for e in errors:
+            print(f"validation error: {e}", file=sys.stderr)
+        sys.exit(1)
+    print(f"{args.path} validated: demo=false, "
+          f"{days} day(s), {filings} filings, {buys} buys, {sells} sells")
 
 
 def cmd_serve(args):
@@ -860,7 +1001,7 @@ def cmd_selftest(args):
     ]
     for i, f in enumerate(fixtures):
         rows = [r for r in parse_form4(synth(*f), f"acc-{i}", today.isoformat())
-                if r["code"] in OPEN_MARKET]
+                if is_open_market_transaction(r)]
         insert_rows(con, rows)
 
     con.execute("INSERT OR IGNORE INTO filings VALUES ('802','424B5',?,'x1')",
@@ -905,15 +1046,23 @@ def cmd_selftest(args):
 
     if args.write_demo:
         os.makedirs(WEB_DIR, exist_ok=True)
+        demo_stats = con.execute("""
+            SELECT (SELECT COUNT(*) FROM txns WHERE code='P') AS buys,
+                   (SELECT COUNT(*) FROM txns WHERE code='S') AS sells,
+                   (SELECT COUNT(*) FROM seen_days) AS days,
+                   (SELECT COALESCE(SUM(n_filings),0) FROM seen_days) AS filings
+        """).fetchone()
         payload = {
             "generated": datetime.now(timezone.utc).isoformat(timespec="seconds"),
             "demo": True, "window_days": 30, "min_insiders": 3,
-            "stats": {"buys": 6, "sells": 1, "days": 0, "filings": 0},
+            "stats": dict(demo_stats),
             "clusters": find_clusters(con, 30, 3, 0),
+            "emerging_clusters": [c for c in find_clusters(con, 30, 2, 0)
+                                  if c["n_insiders"] == 2],
             "recent": [dict(r) for r in con.execute(
                 "SELECT ticker, issuer_name, owner_name, officer_title, txn_date,"
                 " shares, price, value, plan_10b5_1 FROM txns WHERE code='P'"
-                " ORDER BY value DESC")],
+                " AND COALESCE(acq_disp,'A')='A' ORDER BY value DESC")],
         }
         with open(os.path.join(WEB_DIR, "data.json"), "w") as fh:
             json.dump(payload, fh, indent=1, default=str)
@@ -942,6 +1091,14 @@ def main():
     e = sub.add_parser("export");   add_window(e); e.set_defaults(func=cmd_export)
 
     pr = sub.add_parser("prices"); add_window(pr); pr.set_defaults(func=cmd_prices)
+
+    vdb = sub.add_parser("validate-db")
+    vdb.set_defaults(func=cmd_validate_db)
+
+    vj = sub.add_parser("validate-json")
+    vj.add_argument("--path", default=os.path.join(WEB_DIR, "data.json"))
+    vj.add_argument("--allow-empty", action="store_true")
+    vj.set_defaults(func=cmd_validate_json)
 
     s = sub.add_parser("serve")
     s.add_argument("--port", type=int, default=8000)
