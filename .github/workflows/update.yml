@@ -28,12 +28,24 @@ jobs:
           INSIDER_UA: ${{ secrets.INSIDER_UA }}
         run: |
           if [ -z "$INSIDER_UA" ]; then
-            echo "::error::Set the INSIDER_UA secret to 'Your Name your@email.com'."
+            echo "::error::Missing INSIDER_UA. Create a repository secret named INSIDER_UA with a real SEC User-Agent such as 'Your Name your@email.com'."
             exit 1
           fi
-          python3 insider_cluster.py backfill --days 4
+
+          if python3 insider_cluster.py validate-db; then
+            echo "Valid production database found; backfilling the latest 4 days."
+            BACKFILL_DAYS=4
+          else
+            echo "No valid production database found; removing any stale/demo database and seeding 30 days."
+            rm -f insider.db
+            BACKFILL_DAYS=30
+          fi
+
+          python3 insider_cluster.py backfill --days "$BACKFILL_DAYS"
           python3 insider_cluster.py prices --window 30 --min-insiders 3
           python3 insider_cluster.py export --window 30 --min-insiders 3
+          python3 insider_cluster.py validate-db
+          python3 insider_cluster.py validate-json --path data.json
 
       - name: Commit if anything changed
         run: |
