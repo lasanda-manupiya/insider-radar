@@ -44,6 +44,14 @@ WEB_DIR = os.path.dirname(os.path.abspath(__file__))
 OPEN_MARKET = {"P", "S"}
 OPEN_MARKET_ACQ_DISP = {"P": "A", "S": "D"}
 DEMO_TICKERS = {"ACME", "DILU", "ROUT", "SOLO", "NOIS"}
+DEMO_ISSUER_CIKS = {"801", "802", "803", "804", "805"}
+DEMO_ISSUER_NAMES = {
+    "ACME INDUSTRIES INC",
+    "DILU INDUSTRIES INC",
+    "SOLO INDUSTRIES INC",
+    "NOIS INDUSTRIES INC",
+    "ROUT CORP",
+}
 
 # Form types we record from the daily index purely as context. These cost
 # nothing extra - they are already in the index file we download anyway.
@@ -152,23 +160,19 @@ def table_exists(con, name):
 def database_has_demo_data(con):
     if not table_exists(con, "txns"):
         return False
-    tickers = tuple(DEMO_TICKERS)
-    qs = ",".join("?" * len(tickers))
+    ciks = tuple(DEMO_ISSUER_CIKS)
+    names = tuple(DEMO_ISSUER_NAMES)
+    cik_qs = ",".join("?" * len(ciks))
+    name_qs = ",".join("?" * len(names))
     row = con.execute(f"""
         SELECT COUNT(*) AS n FROM txns
-        WHERE UPPER(COALESCE(ticker,'')) IN ({qs})
-           OR UPPER(COALESCE(issuer_name,'')) LIKE '%ACME%'
-           OR UPPER(COALESCE(issuer_name,'')) LIKE '%DILU%'
-           OR UPPER(COALESCE(issuer_name,'')) LIKE '%ROUT%'
-    """, tickers).fetchone()
-    if row and row["n"]:
-        return True
-    if table_exists(con, "prices"):
-        row = con.execute(
-            f"SELECT COUNT(*) AS n FROM prices WHERE UPPER(ticker) IN ({qs})",
-            tickers).fetchone()
-        return bool(row and row["n"])
-    return False
+        WHERE issuer_cik IN ({cik_qs})
+           OR LOWER(COALESCE(accession,'')) LIKE 'acc-%'
+           OR LOWER(COALESCE(accession,'')) LIKE 'h-%'
+           OR LOWER(COALESCE(accession,'')) LIKE 'now-%'
+           OR UPPER(COALESCE(issuer_name,'')) IN ({name_qs})
+    """, ciks + names).fetchone()
+    return bool(row and row["n"])
 
 
 def production_db_status(path=DB_PATH):
@@ -888,8 +892,21 @@ def cmd_export(args):
 
 
 def payload_has_demo_symbols(obj):
-    text = json.dumps(obj, default=str).upper()
-    return any(sym in text for sym in DEMO_TICKERS)
+    groups = (
+        obj.get("clusters") or [],
+        obj.get("emerging_clusters") or [],
+        obj.get("recent") or [],
+    )
+    for rows in groups:
+        for row in rows:
+            cik = str(row.get("cik") or row.get("issuer_cik") or "")
+            name = str(row.get("name") or row.get("issuer_name") or "").upper()
+            ticker = str(row.get("ticker") or "").upper()
+            if cik in DEMO_ISSUER_CIKS or name in DEMO_ISSUER_NAMES:
+                return True
+            if ticker in {"ACME", "DILU", "ROUT"} and "INDUSTRIES INC" in name:
+                return True
+    return False
 
 
 def cmd_validate_db(args):
