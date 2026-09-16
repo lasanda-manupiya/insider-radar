@@ -34,6 +34,7 @@ ARCHIVES = "https://www.sec.gov/Archives/"
 DAILY_INDEX = ARCHIVES + "edgar/daily-index/{year}/QTR{qtr}/master.{ymd}.idx"
 
 REQ_DELAY = 0.12                      # SEC fair-access cap is 10 req/sec
+TRANSIENT_HTTP = {403, 429, 500, 502, 503, 504}
 DB_PATH = os.environ.get("INSIDER_DB", "insider.db")
 WEB_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -223,8 +224,8 @@ def http_get(url, retries=3):
         except urllib.error.HTTPError as e:
             if e.code == 404:
                 return None
-            if e.code in (403, 429):
-                time.sleep(2 ** attempt)
+            if e.code in TRANSIENT_HTTP:
+                time.sleep((2 ** attempt) + REQ_DELAY)
                 continue
             raise
         except (urllib.error.URLError, TimeoutError, OSError):
