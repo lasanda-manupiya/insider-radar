@@ -1,12 +1,12 @@
 {
- "generated": "2026-09-29T15:34:39+00:00",
+ "generated": "2026-09-30T13:37:44+00:00",
  "demo": false,
  "window_days": 30,
  "min_insiders": 3,
  "stats": {
   "buys": 2352,
   "sells": 13531,
-  "days": 31,
+  "days": 32,
   "filings": 23480
  },
  "clusters": [
@@ -2946,41 +2946,6 @@
     "part of a pre-scheduled 10b5-1 plan, not a fresh decision (-10)"
    ],
    "flags": {}
-  },
-  {
-   "cik": "1987240",
-   "ticker": "SHMD",
-   "name": "SCHMID Group N.V.",
-   "n_insiders": 2,
-   "n_trades": 3,
-   "total": 432528.7,
-   "first": "2026-08-30",
-   "last": "2026-09-02",
-   "span_days": 3,
-   "planned": false,
-   "buyers": [
-    {
-     "name": "Schmid Anette",
-     "title": "Director"
-    },
-    {
-     "name": "Speth Ralf",
-     "title": "Director"
-    }
-   ],
-   "insider_type": "unknown",
-   "last_close": null,
-   "score": 17,
-   "why": [
-    "2 separate insiders buying (+16)",
-    "most senior buyer is director (+5)",
-    "one insider lifted their holding 17% (+3)",
-    "all buys inside 3 days (+8)",
-    "Registration or offering document on file - dilution pending (-15)"
-   ],
-   "flags": {
-    "offering": "Registration or offering document on file - dilution pending"
-   }
   }
  ],
  "recent": [
