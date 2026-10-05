@@ -1,60 +1,15 @@
 {
- "generated": "2026-10-02T13:48:58+00:00",
+ "generated": "2026-10-05T15:56:22+00:00",
  "demo": false,
  "window_days": 30,
  "min_insiders": 3,
  "stats": {
   "buys": 2352,
   "sells": 13531,
-  "days": 34,
+  "days": 35,
   "filings": 23480
  },
  "clusters": [
-  {
-   "cik": "896493",
-   "ticker": "GPUS",
-   "name": "Hyperscale Data, Inc.",
-   "n_insiders": 5,
-   "n_trades": 23,
-   "total": 1414562.2897,
-   "first": "2026-09-02",
-   "last": "2026-09-14",
-   "span_days": 12,
-   "planned": false,
-   "buyers": [
-    {
-     "name": "AULT MILTON C III",
-     "title": "Executive Chairman"
-    },
-    {
-     "name": "Horne William B.",
-     "title": "Chief Executive Officer"
-    },
-    {
-     "name": "Ault & Company, Inc.",
-     "title": "10% owner"
-    },
-    {
-     "name": "CRAGUN KENNETH S",
-     "title": "Chief Financial Officer"
-    },
-    {
-     "name": "Nisser Henry Carl",
-     "title": "President and General Counsel"
-    }
-   ],
-   "insider_type": "unknown",
-   "last_close": null,
-   "score": 77,
-   "why": [
-    "5 separate insiders buying (+40)",
-    "most senior buyer is CFO (+15)",
-    "one insider lifted their holding 273% (+15)",
-    "buys clustered within 12 days (+4)",
-    "$1,414,562 committed (+3)"
-   ],
-   "flags": {}
-  },
   {
    "cik": "1844971",
    "ticker": "GREE",
@@ -331,103 +286,6 @@
    "flags": {}
   },
   {
-   "cik": "1861123",
-   "ticker": "EIKN",
-   "name": "Eikon Therapeutics, Inc.",
-   "n_insiders": 8,
-   "n_trades": 8,
-   "total": 8248359.68,
-   "first": "2026-09-03",
-   "last": "2026-09-03",
-   "span_days": 0,
-   "planned": false,
-   "buyers": [
-    {
-     "name": "Column Group IV GP, LP",
-     "title": "10% owner"
-    },
-    {
-     "name": "Column Group IV-A, LP",
-     "title": "10% owner"
-    },
-    {
-     "name": "Column Group IV, LP",
-     "title": "10% owner"
-    },
-    {
-     "name": "Column Group Opportunity III, LP",
-     "title": "10% owner"
-    },
-    {
-     "name": "Column Group Opportunity III GP, LP",
-     "title": "10% owner"
-    },
-    {
-     "name": "TCG Opportunity III GP, LLC",
-     "title": "10% owner"
-    },
-    {
-     "name": "Kutzkey Tim",
-     "title": "10% owner"
-    },
-    {
-     "name": "Svennilson Peter",
-     "title": "10% owner"
-    }
-   ],
-   "insider_type": "unknown",
-   "last_close": null,
-   "score": 66,
-   "why": [
-    "8 separate insiders buying (+48)",
-    "most senior buyer is 10% owner (+2)",
-    "all buys inside 0 days (+8)",
-    "$8,248,360 committed (+8)"
-   ],
-   "flags": {}
-  },
-  {
-   "cik": "34956",
-   "ticker": "TENX",
-   "name": "TENAX THERAPEUTICS, INC.",
-   "n_insiders": 4,
-   "n_trades": 7,
-   "total": 3914559.5979999998,
-   "first": "2026-09-02",
-   "last": "2026-09-15",
-   "span_days": 13,
-   "planned": false,
-   "buyers": [
-    {
-     "name": "ADAR1 Capital Management, LLC",
-     "title": "10% owner"
-    },
-    {
-     "name": "Schneeberger Daniel",
-     "title": "10% owner"
-    },
-    {
-     "name": "STAAB THOMAS R II",
-     "title": "Chief Financial Officer"
-    },
-    {
-     "name": "Giordano Christopher Thomas",
-     "title": "CEO"
-    }
-   ],
-   "insider_type": "unknown",
-   "last_close": null,
-   "score": 65,
-   "why": [
-    "4 separate insiders buying (+32)",
-    "most senior buyer is CFO (+15)",
-    "one insider lifted their holding 57% (+9)",
-    "buys clustered within 13 days (+4)",
-    "$3,914,560 committed (+5)"
-   ],
-   "flags": {}
-  },
-  {
    "cik": "1095435",
    "ticker": "ALP",
    "name": "Alpha Compute Corp",
@@ -580,43 +438,6 @@
    "flags": {}
   },
   {
-   "cik": "1591588",
-   "ticker": "GOLD",
-   "name": "Gold.com, Inc.",
-   "n_insiders": 3,
-   "n_trades": 3,
-   "total": 11791050.0,
-   "first": "2026-09-03",
-   "last": "2026-09-03",
-   "span_days": 0,
-   "planned": false,
-   "buyers": [
-    {
-     "name": "Tether Global Investments Fund, S.I.C.A.F., S.A.",
-     "title": "10% owner"
-    },
-    {
-     "name": "TPM, S.A. de C.V.",
-     "title": "10% owner"
-    },
-    {
-     "name": "Devasini Giancarlo",
-     "title": "10% owner"
-    }
-   ],
-   "insider_type": "unknown",
-   "last_close": null,
-   "score": 52,
-   "why": [
-    "3 separate insiders buying (+24)",
-    "most senior buyer is 10% owner (+2)",
-    "one insider lifted their holding 50% (+8)",
-    "all buys inside 0 days (+8)",
-    "$11,791,050 committed (+10)"
-   ],
-   "flags": {}
-  },
-  {
    "cik": "2007919",
    "ticker": "INBX",
    "name": "Inhibrx Biosciences, Inc.",
@@ -649,6 +470,42 @@
     "most senior buyer is CEO (+12)",
     "all buys inside 0 days (+8)",
     "$3,499,597 committed (+5)"
+   ],
+   "flags": {}
+  },
+  {
+   "cik": "896493",
+   "ticker": "GPUS",
+   "name": "Hyperscale Data, Inc.",
+   "n_insiders": 3,
+   "n_trades": 9,
+   "total": 79735.98,
+   "first": "2026-09-08",
+   "last": "2026-09-14",
+   "span_days": 6,
+   "planned": false,
+   "buyers": [
+    {
+     "name": "Horne William B.",
+     "title": "Chief Executive Officer"
+    },
+    {
+     "name": "AULT MILTON C III",
+     "title": "Executive Chairman"
+    },
+    {
+     "name": "Ault & Company, Inc.",
+     "title": "10% owner"
+    }
+   ],
+   "insider_type": "unknown",
+   "last_close": null,
+   "score": 48,
+   "why": [
+    "3 separate insiders buying (+24)",
+    "most senior buyer is CEO (+12)",
+    "one insider lifted their holding 25% (+4)",
+    "all buys inside 6 days (+8)"
    ],
    "flags": {}
   },
@@ -686,6 +543,91 @@
     "all buys inside 5 days (+8)"
    ],
    "flags": {}
+  },
+  {
+   "cik": "885307",
+   "ticker": "JCTC",
+   "name": "JEWETT CAMERON TRADING CO LTD",
+   "n_insiders": 4,
+   "n_trades": 20,
+   "total": 74400.36,
+   "first": "2026-09-08",
+   "last": "2026-09-14",
+   "span_days": 6,
+   "planned": false,
+   "buyers": [
+    {
+     "name": "AJB Investment Fund II, LP",
+     "title": "10% owner"
+    },
+    {
+     "name": "AJB Capital, LLC",
+     "title": "10% owner"
+    },
+    {
+     "name": "Bradley Adam James",
+     "title": "10% owner"
+    },
+    {
+     "name": "Bradley Melinda Hodges",
+     "title": "10% owner"
+    }
+   ],
+   "insider_type": "unknown",
+   "last_close": null,
+   "score": 42,
+   "why": [
+    "4 separate insiders buying (+32)",
+    "most senior buyer is 10% owner (+2)",
+    "all buys inside 6 days (+8)"
+   ],
+   "flags": {}
+  },
+  {
+   "cik": "1218683",
+   "ticker": "BGDE",
+   "name": "Big Digital Energy, Inc.",
+   "n_insiders": 5,
+   "n_trades": 50,
+   "total": 101569.58499999999,
+   "first": "2026-09-09",
+   "last": "2026-09-14",
+   "span_days": 5,
+   "planned": false,
+   "buyers": [
+    {
+     "name": "Endeavor Blockchain, LLC",
+     "title": "10% owner"
+    },
+    {
+     "name": "Kilgore Joshua Allen",
+     "title": "SEE REMARKS"
+    },
+    {
+     "name": "Smith Cody",
+     "title": "10% owner"
+    },
+    {
+     "name": "PM Squared LLC",
+     "title": "10% owner"
+    },
+    {
+     "name": "Six Thirty AI, LLC",
+     "title": "10% owner"
+    }
+   ],
+   "insider_type": "unknown",
+   "last_close": null,
+   "score": 40,
+   "why": [
+    "5 separate insiders buying (+40)",
+    "most senior buyer is officer (+7)",
+    "all buys inside 5 days (+8)",
+    "Registration or offering document on file - dilution pending (-15)"
+   ],
+   "flags": {
+    "offering": "Registration or offering document on file - dilution pending"
+   }
   },
   {
    "cik": "1979414",
@@ -727,100 +669,15 @@
    }
   },
   {
-   "cik": "885307",
-   "ticker": "JCTC",
-   "name": "JEWETT CAMERON TRADING CO LTD",
-   "n_insiders": 4,
-   "n_trades": 32,
-   "total": 166847.48,
-   "first": "2026-09-04",
-   "last": "2026-09-14",
-   "span_days": 10,
-   "planned": false,
-   "buyers": [
-    {
-     "name": "AJB Investment Fund II, LP",
-     "title": "10% owner"
-    },
-    {
-     "name": "AJB Capital, LLC",
-     "title": "10% owner"
-    },
-    {
-     "name": "Bradley Adam James",
-     "title": "10% owner"
-    },
-    {
-     "name": "Bradley Melinda Hodges",
-     "title": "10% owner"
-    }
-   ],
-   "insider_type": "unknown",
-   "last_close": null,
-   "score": 38,
-   "why": [
-    "4 separate insiders buying (+32)",
-    "most senior buyer is 10% owner (+2)",
-    "buys clustered within 10 days (+4)"
-   ],
-   "flags": {}
-  },
-  {
-   "cik": "1218683",
-   "ticker": "BGDE",
-   "name": "Big Digital Energy, Inc.",
-   "n_insiders": 5,
-   "n_trades": 55,
-   "total": 227369.585,
-   "first": "2026-09-02",
-   "last": "2026-09-14",
-   "span_days": 12,
-   "planned": false,
-   "buyers": [
-    {
-     "name": "Endeavor Blockchain, LLC",
-     "title": "10% owner"
-    },
-    {
-     "name": "Kilgore Joshua Allen",
-     "title": "SEE REMARKS"
-    },
-    {
-     "name": "Smith Cody",
-     "title": "10% owner"
-    },
-    {
-     "name": "PM Squared LLC",
-     "title": "10% owner"
-    },
-    {
-     "name": "Six Thirty AI, LLC",
-     "title": "10% owner"
-    }
-   ],
-   "insider_type": "unknown",
-   "last_close": null,
-   "score": 36,
-   "why": [
-    "5 separate insiders buying (+40)",
-    "most senior buyer is officer (+7)",
-    "buys clustered within 12 days (+4)",
-    "Registration or offering document on file - dilution pending (-15)"
-   ],
-   "flags": {
-    "offering": "Registration or offering document on file - dilution pending"
-   }
-  },
-  {
    "cik": "881787",
    "ticker": "CRT",
    "name": "CROSS TIMBERS ROYALTY TRUST",
    "n_insiders": 3,
-   "n_trades": 18,
-   "total": 1282917.03,
-   "first": "2026-09-02",
+   "n_trades": 9,
+   "total": 1005665.8200000001,
+   "first": "2026-09-08",
    "last": "2026-09-11",
-   "span_days": 9,
+   "span_days": 3,
    "planned": false,
    "buyers": [
     {
@@ -838,12 +695,12 @@
    ],
    "insider_type": "unknown",
    "last_close": null,
-   "score": 33,
+   "score": 37,
    "why": [
     "3 separate insiders buying (+24)",
     "most senior buyer is 10% owner (+2)",
-    "buys clustered within 9 days (+4)",
-    "$1,282,917 committed (+3)"
+    "all buys inside 3 days (+8)",
+    "$1,005,666 committed (+3)"
    ],
    "flags": {}
   },
@@ -852,11 +709,11 @@
    "ticker": "QVCG",
    "name": "QVC Group, Inc.",
    "n_insiders": 3,
-   "n_trades": 6,
-   "total": 113532000.0,
-   "first": "2026-09-03",
+   "n_trades": 3,
+   "total": 78000000.0,
+   "first": "2026-09-08",
    "last": "2026-09-08",
-   "span_days": 5,
+   "span_days": 0,
    "planned": false,
    "buyers": [
     {
@@ -879,8 +736,8 @@
     "3 separate insiders buying (+24)",
     "most senior buyer is 10% owner (+2)",
     "one insider lifted their holding 17% (+3)",
-    "all buys inside 5 days (+8)",
-    "$113,532,000 committed (+10)",
+    "all buys inside 0 days (+8)",
+    "$78,000,000 committed (+10)",
     "Registration or offering document on file - dilution pending (-15)"
    ],
    "flags": {
@@ -892,11 +749,11 @@
    "ticker": "ENHA",
    "name": "Enhanced Group Inc.",
    "n_insiders": 3,
-   "n_trades": 15,
-   "total": 1488382.8183,
-   "first": "2026-09-02",
+   "n_trades": 6,
+   "total": 757351.1664,
+   "first": "2026-09-08",
    "last": "2026-09-09",
-   "span_days": 7,
+   "span_days": 1,
    "planned": false,
    "buyers": [
     {
@@ -914,12 +771,11 @@
    ],
    "insider_type": "unknown",
    "last_close": null,
-   "score": 25,
+   "score": 22,
    "why": [
     "3 separate insiders buying (+24)",
     "most senior buyer is director (+5)",
-    "all buys inside 7 days (+8)",
-    "$1,488,383 committed (+3)",
+    "all buys inside 1 days (+8)",
     "Registration or offering document on file - dilution pending (-15)"
    ],
    "flags": {
@@ -928,6 +784,38 @@
   }
  ],
  "emerging_clusters": [
+  {
+   "cik": "1770501",
+   "ticker": "VENU",
+   "name": "Venu Holding Corp",
+   "n_insiders": 2,
+   "n_trades": 2,
+   "total": 700000.0,
+   "first": "2026-09-11",
+   "last": "2026-09-11",
+   "span_days": 0,
+   "planned": false,
+   "buyers": [
+    {
+     "name": "ROTH JAY W",
+     "title": "CEO & Chairman"
+    },
+    {
+     "name": "Finke Thomas M",
+     "title": "Director"
+    }
+   ],
+   "insider_type": "unknown",
+   "last_close": null,
+   "score": 51,
+   "why": [
+    "2 separate insiders buying (+16)",
+    "most senior buyer is CEO (+12)",
+    "one insider lifted their holding 320% (+15)",
+    "all buys inside 0 days (+8)"
+   ],
+   "flags": {}
+  },
   {
    "cik": "1317945",
    "ticker": "OFLX",
@@ -961,34 +849,34 @@
    "flags": {}
   },
   {
-   "cik": "1770501",
-   "ticker": "VENU",
-   "name": "Venu Holding Corp",
+   "cik": "34956",
+   "ticker": "TENX",
+   "name": "TENAX THERAPEUTICS, INC.",
    "n_insiders": 2,
-   "n_trades": 4,
-   "total": 702653.4739,
-   "first": "2026-09-02",
-   "last": "2026-09-11",
-   "span_days": 9,
+   "n_trades": 3,
+   "total": 31068.309999999998,
+   "first": "2026-09-11",
+   "last": "2026-09-15",
+   "span_days": 4,
    "planned": false,
    "buyers": [
     {
-     "name": "ROTH JAY W",
-     "title": "CEO & Chairman"
+     "name": "STAAB THOMAS R II",
+     "title": "Chief Financial Officer"
     },
     {
-     "name": "Finke Thomas M",
-     "title": "Director"
+     "name": "Giordano Christopher Thomas",
+     "title": "CEO"
     }
    ],
    "insider_type": "unknown",
    "last_close": null,
-   "score": 47,
+   "score": 48,
    "why": [
     "2 separate insiders buying (+16)",
-    "most senior buyer is CEO (+12)",
-    "one insider lifted their holding 320% (+15)",
-    "buys clustered within 9 days (+4)"
+    "most senior buyer is CFO (+15)",
+    "one insider lifted their holding 57% (+9)",
+    "all buys inside 4 days (+8)"
    ],
    "flags": {}
   },
@@ -1021,39 +909,6 @@
     "most senior buyer is CEO (+12)",
     "one insider lifted their holding 60% (+9)",
     "all buys inside 4 days (+8)"
-   ],
-   "flags": {}
-  },
-  {
-   "cik": "1378950",
-   "ticker": "PRTS",
-   "name": "CarParts.com, Inc.",
-   "n_insiders": 2,
-   "n_trades": 8,
-   "total": 1764291.26,
-   "first": "2026-09-04",
-   "last": "2026-09-10",
-   "span_days": 6,
-   "planned": false,
-   "buyers": [
-    {
-     "name": "Meniane David",
-     "title": "CEO"
-    },
-    {
-     "name": "Huffaker Michael",
-     "title": "COO"
-    }
-   ],
-   "insider_type": "unknown",
-   "last_close": null,
-   "score": 44,
-   "why": [
-    "2 separate insiders buying (+16)",
-    "most senior buyer is CEO (+12)",
-    "one insider lifted their holding 36% (+5)",
-    "all buys inside 6 days (+8)",
-    "$1,764,291 committed (+3)"
    ],
    "flags": {}
   },
@@ -1091,6 +946,39 @@
    "flags": {}
   },
   {
+   "cik": "1378950",
+   "ticker": "PRTS",
+   "name": "CarParts.com, Inc.",
+   "n_insiders": 2,
+   "n_trades": 6,
+   "total": 1378810.72,
+   "first": "2026-09-08",
+   "last": "2026-09-10",
+   "span_days": 2,
+   "planned": false,
+   "buyers": [
+    {
+     "name": "Meniane David",
+     "title": "CEO"
+    },
+    {
+     "name": "Huffaker Michael",
+     "title": "COO"
+    }
+   ],
+   "insider_type": "unknown",
+   "last_close": null,
+   "score": 44,
+   "why": [
+    "2 separate insiders buying (+16)",
+    "most senior buyer is CEO (+12)",
+    "one insider lifted their holding 36% (+5)",
+    "all buys inside 2 days (+8)",
+    "$1,378,811 committed (+3)"
+   ],
+   "flags": {}
+  },
+  {
    "cik": "10048",
    "ticker": "BRN",
    "name": "BARNWELL INDUSTRIES INC",
@@ -1119,38 +1007,6 @@
     "most senior buyer is CFO (+15)",
     "one insider lifted their holding 33% (+5)",
     "all buys inside 1 days (+8)"
-   ],
-   "flags": {}
-  },
-  {
-   "cik": "880417",
-   "ticker": "CSBB",
-   "name": "CSB Bancorp, Inc.",
-   "n_insiders": 2,
-   "n_trades": 3,
-   "total": 49886.7,
-   "first": "2026-09-02",
-   "last": "2026-09-08",
-   "span_days": 6,
-   "planned": false,
-   "buyers": [
-    {
-     "name": "STEINER EDDIE L",
-     "title": "President & CEO"
-    },
-    {
-     "name": "Schillig Stephen E",
-     "title": "Director"
-    }
-   ],
-   "insider_type": "unknown",
-   "last_close": null,
-   "score": 43,
-   "why": [
-    "2 separate insiders buying (+16)",
-    "most senior buyer is CEO (+12)",
-    "one insider lifted their holding 48% (+7)",
-    "all buys inside 6 days (+8)"
    ],
    "flags": {}
   },
@@ -1219,101 +1075,6 @@
    "flags": {}
   },
   {
-   "cik": "1928446",
-   "ticker": "GRNT",
-   "name": "Granite Ridge Resources, Inc.",
-   "n_insiders": 2,
-   "n_trades": 2,
-   "total": 80600.0,
-   "first": "2026-09-04",
-   "last": "2026-09-11",
-   "span_days": 7,
-   "planned": false,
-   "buyers": [
-    {
-     "name": "Kettler Ronald Kyle",
-     "title": "Chief Financial Officer"
-    },
-    {
-     "name": "Miller Matthew Reade",
-     "title": "Director"
-    }
-   ],
-   "insider_type": "unknown",
-   "last_close": null,
-   "score": 39,
-   "why": [
-    "2 separate insiders buying (+16)",
-    "most senior buyer is CFO (+15)",
-    "all buys inside 7 days (+8)"
-   ],
-   "flags": {}
-  },
-  {
-   "cik": "1833141",
-   "ticker": "CYBN",
-   "name": "CYBIN INC.",
-   "n_insiders": 2,
-   "n_trades": 5,
-   "total": 6120230.0,
-   "first": "2026-09-03",
-   "last": "2026-09-08",
-   "span_days": 5,
-   "planned": false,
-   "buyers": [
-    {
-     "name": "Glavine Paul",
-     "title": "Chief Growth Officer"
-    },
-    {
-     "name": "So Eric H. L.",
-     "title": "Executive Chair"
-    }
-   ],
-   "insider_type": "unknown",
-   "last_close": null,
-   "score": 38,
-   "why": [
-    "2 separate insiders buying (+16)",
-    "most senior buyer is officer (+7)",
-    "all buys inside 5 days (+8)",
-    "$6,120,230 committed (+7)"
-   ],
-   "flags": {}
-  },
-  {
-   "cik": "1693736",
-   "ticker": "EQPT",
-   "name": "EquipmentShare.com Inc",
-   "n_insiders": 2,
-   "n_trades": 2,
-   "total": 354800.0,
-   "first": "2026-09-02",
-   "last": "2026-09-02",
-   "span_days": 0,
-   "planned": false,
-   "buyers": [
-    {
-     "name": "Schlacks Jabbok",
-     "title": "Founder & CEO"
-    },
-    {
-     "name": "Schlacks William J.",
-     "title": "Founder & President"
-    }
-   ],
-   "insider_type": "unknown",
-   "last_close": null,
-   "score": 38,
-   "why": [
-    "2 separate insiders buying (+16)",
-    "most senior buyer is CEO (+12)",
-    "one insider lifted their holding 16% (+2)",
-    "all buys inside 0 days (+8)"
-   ],
-   "flags": {}
-  },
-  {
    "cik": "75288",
    "ticker": "OXM",
    "name": "OXFORD INDUSTRIES INC",
@@ -1346,24 +1107,24 @@
    "flags": {}
   },
   {
-   "cik": "1420800",
-   "ticker": "ENOV",
-   "name": "Enovis CORP",
+   "cik": "1408534",
+   "ticker": "FGBI",
+   "name": "First Guaranty Bancshares, Inc.",
    "n_insiders": 2,
    "n_trades": 4,
-   "total": 449599.20999999996,
-   "first": "2026-09-02",
-   "last": "2026-09-04",
+   "total": 106492.5,
+   "first": "2026-09-08",
+   "last": "2026-09-10",
    "span_days": 2,
    "planned": false,
    "buyers": [
     {
-     "name": "Engert Oliver",
-     "title": "Chief Administrative Officer"
+     "name": "McAnally Bruce",
+     "title": "Director"
     },
     {
-     "name": "McDonald Damien",
-     "title": "Chief Executive Officer"
+     "name": "WALKER ROBERT W",
+     "title": "Director"
     }
    ],
    "insider_type": "unknown",
@@ -1371,9 +1132,73 @@
    "score": 37,
    "why": [
     "2 separate insiders buying (+16)",
-    "most senior buyer is CEO (+12)",
-    "one insider lifted their holding 9% (+1)",
+    "most senior buyer is director (+5)",
+    "one insider lifted their holding 50% (+8)",
     "all buys inside 2 days (+8)"
+   ],
+   "flags": {}
+  },
+  {
+   "cik": "1060391",
+   "ticker": "RSG",
+   "name": "REPUBLIC SERVICES, INC.",
+   "n_insiders": 2,
+   "n_trades": 28,
+   "total": 577797315.9804,
+   "first": "2026-09-08",
+   "last": "2026-09-11",
+   "span_days": 3,
+   "planned": false,
+   "buyers": [
+    {
+     "name": "CASCADE INVESTMENT, L.L.C.",
+     "title": "10% owner"
+    },
+    {
+     "name": "GATES WILLIAM H III",
+     "title": "10% owner"
+    }
+   ],
+   "insider_type": "unknown",
+   "last_close": null,
+   "score": 36,
+   "why": [
+    "2 separate insiders buying (+16)",
+    "most senior buyer is 10% owner (+2)",
+    "all buys inside 3 days (+8)",
+    "$577,797,316 committed (+10)"
+   ],
+   "flags": {}
+  },
+  {
+   "cik": "1833141",
+   "ticker": "CYBN",
+   "name": "CYBIN INC.",
+   "n_insiders": 2,
+   "n_trades": 3,
+   "total": 3733050.0,
+   "first": "2026-09-08",
+   "last": "2026-09-08",
+   "span_days": 0,
+   "planned": false,
+   "buyers": [
+    {
+     "name": "So Eric H. L.",
+     "title": "Executive Chair"
+    },
+    {
+     "name": "Glavine Paul",
+     "title": "Chief Growth Officer"
+    }
+   ],
+   "insider_type": "unknown",
+   "last_close": null,
+   "score": 36,
+   "why": [
+    "2 separate insiders buying (+16)",
+    "most senior buyer is officer (+7)",
+    "all buys inside 0 days (+8)",
+    "$3,733,050 committed (+5)"
    ],
    "flags": {}
   },
@@ -1405,37 +1230,6 @@
     "2 separate insiders buying (+16)",
     "most senior buyer is CEO (+12)",
     "all buys inside 1 days (+8)"
-   ],
-   "flags": {}
-  },
-  {
-   "cik": "55242",
-   "ticker": "KMT",
-   "name": "KENNAMETAL INC",
-   "n_insiders": 2,
-   "n_trades": 2,
-   "total": 354750.0,
-   "first": "2026-09-04",
-   "last": "2026-09-10",
-   "span_days": 6,
-   "planned": false,
-   "buyers": [
-    {
-     "name": "HARSHMAN RICHARD J",
-     "title": "Director"
-    },
-    {
-     "name": "Chowbey Sanjay",
-     "title": "President and CEO"
-    }
-   ],
-   "insider_type": "unknown",
-   "last_close": null,
-   "score": 36,
-   "why": [
-    "2 separate insiders buying (+16)",
-    "most senior buyer is CEO (+12)",
-    "all buys inside 6 days (+8)"
    ],
    "flags": {}
   },
@@ -1569,83 +1363,15 @@
    "flags": {}
   },
   {
-   "cik": "1543151",
-   "ticker": "UBER",
-   "name": "Uber Technologies, Inc",
-   "n_insiders": 2,
-   "n_trades": 3,
-   "total": 15314015.882500002,
-   "first": "2026-09-04",
-   "last": "2026-09-10",
-   "span_days": 6,
-   "planned": false,
-   "buyers": [
-    {
-     "name": "Macdonald Andrew",
-     "title": "See Remarks"
-    },
-    {
-     "name": "KHOSROWSHAHI DARA",
-     "title": "Chief Executive Officer"
-    }
-   ],
-   "insider_type": "unknown",
-   "last_close": null,
-   "score": 33,
-   "why": [
-    "2 separate insiders buying (+16)",
-    "most senior buyer is CEO (+12)",
-    "one insider lifted their holding 15% (+2)",
-    "all buys inside 6 days (+8)",
-    "$15,314,016 committed (+10)",
-    "Registration or offering document on file - dilution pending (-15)"
-   ],
-   "flags": {
-    "offering": "Registration or offering document on file - dilution pending"
-   }
-  },
-  {
-   "cik": "1408534",
-   "ticker": "FGBI",
-   "name": "First Guaranty Bancshares, Inc.",
-   "n_insiders": 2,
-   "n_trades": 6,
-   "total": 113942.5,
-   "first": "2026-09-02",
-   "last": "2026-09-10",
-   "span_days": 8,
-   "planned": false,
-   "buyers": [
-    {
-     "name": "McAnally Bruce",
-     "title": "Director"
-    },
-    {
-     "name": "WALKER ROBERT W",
-     "title": "Director"
-    }
-   ],
-   "insider_type": "unknown",
-   "last_close": null,
-   "score": 33,
-   "why": [
-    "2 separate insiders buying (+16)",
-    "most senior buyer is director (+5)",
-    "one insider lifted their holding 50% (+8)",
-    "buys clustered within 8 days (+4)"
-   ],
-   "flags": {}
-  },
-  {
    "cik": "1318482",
    "ticker": "KDOZF",
    "name": "KIDOZ INC.",
    "n_insiders": 2,
-   "n_trades": 4,
-   "total": 1793.5,
-   "first": "2026-09-04",
+   "n_trades": 3,
+   "total": 1323.5,
+   "first": "2026-09-08",
    "last": "2026-09-11",
-   "span_days": 7,
+   "span_days": 3,
    "planned": false,
    "buyers": [
     {
@@ -1663,71 +1389,7 @@
    "why": [
     "2 separate insiders buying (+16)",
     "most senior buyer is senior officer (+9)",
-    "all buys inside 7 days (+8)"
-   ],
-   "flags": {}
-  },
-  {
-   "cik": "1060391",
-   "ticker": "RSG",
-   "name": "REPUBLIC SERVICES, INC.",
-   "n_insiders": 2,
-   "n_trades": 50,
-   "total": 1054202046.8848,
-   "first": "2026-09-02",
-   "last": "2026-09-11",
-   "span_days": 9,
-   "planned": false,
-   "buyers": [
-    {
-     "name": "CASCADE INVESTMENT, L.L.C.",
-     "title": "10% owner"
-    },
-    {
-     "name": "GATES WILLIAM H III",
-     "title": "10% owner"
-    }
-   ],
-   "insider_type": "unknown",
-   "last_close": null,
-   "score": 32,
-   "why": [
-    "2 separate insiders buying (+16)",
-    "most senior buyer is 10% owner (+2)",
-    "buys clustered within 9 days (+4)",
-    "$1,054,202,047 committed (+10)"
-   ],
-   "flags": {}
-  },
-  {
-   "cik": "1982518",
-   "ticker": "SDHC",
-   "name": "Smith Douglas Homes Corp.",
-   "n_insiders": 2,
-   "n_trades": 2,
-   "total": 211022.224,
-   "first": "2026-09-02",
-   "last": "2026-09-10",
-   "span_days": 8,
-   "planned": false,
-   "buyers": [
-    {
-     "name": "Bennett Gregory S",
-     "title": "See Remarks"
-    },
-    {
-     "name": "Bradbury Thomas L",
-     "title": "Director"
-    }
-   ],
-   "insider_type": "unknown",
-   "last_close": null,
-   "score": 32,
-   "why": [
-    "2 separate insiders buying (+16)",
-    "most senior buyer is officer (+7)",
-    "one insider lifted their holding 33% (+5)",
-    "buys clustered within 8 days (+4)"
+    "all buys inside 3 days (+8)"
    ],
    "flags": {}
   },
@@ -1764,38 +1426,6 @@
    "flags": {}
   },
   {
-   "cik": "1825088",
-   "ticker": "DFH",
-   "name": "Dream Finders Homes, Inc.",
-   "n_insiders": 2,
-   "n_trades": 2,
-   "total": 140905.0,
-   "first": "2026-09-03",
-   "last": "2026-09-10",
-   "span_days": 7,
-   "planned": false,
-   "buyers": [
-    {
-     "name": "Sturm Len",
-     "title": "Director"
-    },
-    {
-     "name": "BECKWITT RICHARD",
-     "title": "Director"
-    }
-   ],
-   "insider_type": "unknown",
-   "last_close": null,
-   "score": 31,
-   "why": [
-    "2 separate insiders buying (+16)",
-    "most senior buyer is director (+5)",
-    "one insider lifted their holding 11% (+2)",
-    "all buys inside 7 days (+8)"
-   ],
-   "flags": {}
-  },
-  {
    "cik": "1606163",
    "ticker": "LMB",
    "name": "Limbach Holdings, Inc.",
@@ -1823,37 +1453,6 @@
     "2 separate insiders buying (+16)",
     "most senior buyer is director (+5)",
     "all buys inside 4 days (+8)"
-   ],
-   "flags": {}
-  },
-  {
-   "cik": "2147219",
-   "ticker": "RNAQ",
-   "name": "Rainier Acquisition Corp",
-   "n_insiders": 2,
-   "n_trades": 2,
-   "total": 112500.0,
-   "first": "2026-09-02",
-   "last": "2026-09-02",
-   "span_days": 0,
-   "planned": false,
-   "buyers": [
-    {
-     "name": "GROSSMAN JONAS",
-     "title": "Director"
-    },
-    {
-     "name": "Ravenna 7 LLC",
-     "title": "10% owner"
-    }
-   ],
-   "insider_type": "unknown",
-   "last_close": null,
-   "score": 29,
-   "why": [
-    "2 separate insiders buying (+16)",
-    "most senior buyer is director (+5)",
-    "all buys inside 0 days (+8)"
    ],
    "flags": {}
   },
@@ -1920,37 +1519,6 @@
    "flags": {}
   },
   {
-   "cik": "1841761",
-   "ticker": "GROV",
-   "name": "Grove Collaborative Holdings, Inc.",
-   "n_insiders": 2,
-   "n_trades": 6,
-   "total": 43014.2134,
-   "first": "2026-09-02",
-   "last": "2026-09-11",
-   "span_days": 9,
-   "planned": false,
-   "buyers": [
-    {
-     "name": "Karp Jason H.",
-     "title": "Director"
-    },
-    {
-     "name": "Landesberg Stuart",
-     "title": "Director"
-    }
-   ],
-   "insider_type": "unknown",
-   "last_close": null,
-   "score": 25,
-   "why": [
-    "2 separate insiders buying (+16)",
-    "most senior buyer is director (+5)",
-    "buys clustered within 9 days (+4)"
-   ],
-   "flags": {}
-  },
-  {
    "cik": "1878313",
    "ticker": "MAIA",
    "name": "MAIA Biotechnology, Inc.",
@@ -1984,38 +1552,6 @@
    "flags": {
     "offering": "Registration or offering document on file - dilution pending"
    }
-  },
-  {
-   "cik": "810958",
-   "ticker": "CZNC",
-   "name": "CITIZENS & NORTHERN CORP",
-   "n_insiders": 2,
-   "n_trades": 2,
-   "total": 4866.9132,
-   "first": "2026-09-04",
-   "last": "2026-09-04",
-   "span_days": 0,
-   "planned": true,
-   "buyers": [
-    {
-     "name": "Pellegrino Frank G",
-     "title": "Director"
-    },
-    {
-     "name": "Shattuck Katherine W",
-     "title": "Director"
-    }
-   ],
-   "insider_type": "unknown",
-   "last_close": null,
-   "score": 19,
-   "why": [
-    "2 separate insiders buying (+16)",
-    "most senior buyer is director (+5)",
-    "all buys inside 0 days (+8)",
-    "part of a pre-scheduled 10b5-1 plan, not a fresh decision (-10)"
-   ],
-   "flags": {}
   }
  ],
  "recent": [
