@@ -1,12 +1,12 @@
 {
- "generated": "2026-10-07T14:27:14+00:00",
+ "generated": "2026-10-08T14:32:29+00:00",
  "demo": false,
  "window_days": 30,
  "min_insiders": 3,
  "stats": {
   "buys": 2352,
   "sells": 13531,
-  "days": 37,
+  "days": 38,
   "filings": 23480
  },
  "clusters": [
@@ -48,150 +48,6 @@
     "one insider lifted their holding 2532% (+15)",
     "all buys inside 0 days (+8)",
     "$5,299,996 committed (+6)"
-   ],
-   "flags": {}
-  },
-  {
-   "cik": "1046179",
-   "ticker": "TSM",
-   "name": "TAIWAN SEMICONDUCTOR MANUFACTURING CO LTD",
-   "n_insiders": 30,
-   "n_trades": 31,
-   "total": 121843.8,
-   "first": "2026-09-07",
-   "last": "2026-09-07",
-   "span_days": 0,
-   "planned": false,
-   "buyers": [
-    {
-     "name": "Chang Tzonz-Sheng",
-     "title": "SVP"
-    },
-    {
-     "name": "Chen Pei-Hung",
-     "title": "VP"
-    },
-    {
-     "name": "Chin Yung-Pei",
-     "title": "EVP and Co-COO"
-    },
-    {
-     "name": "Cao Min",
-     "title": "VP"
-    },
-    {
-     "name": "Chen Chih-Ho",
-     "title": "Controller"
-    },
-    {
-     "name": "Chuang Tzu-Sou",
-     "title": "VP"
-    },
-    {
-     "name": "He Jun",
-     "title": "VP"
-    },
-    {
-     "name": "Fang Shu-Hua",
-     "title": "SVP and GC"
-    },
-    {
-     "name": "Chuang Juiping",
-     "title": "VP"
-    },
-    {
-     "name": "Hou Yung-Chin",
-     "title": "SVP and Deputy Co-COO"
-    },
-    {
-     "name": "Ku Yao-Ching",
-     "title": "VP"
-    },
-    {
-     "name": "Huang Jen-Chau",
-     "title": "SVP and CFO"
-    },
-    {
-     "name": "Hsu Kuo-Chin",
-     "title": "VP"
-    },
-    {
-     "name": "Hwang Yuan-Ko",
-     "title": "VP"
-    },
-    {
-     "name": "Jang Syun-Ming",
-     "title": "VP"
-    },
-    {
-     "name": "Lu Lee-Chung",
-     "title": "VP"
-    },
-    {
-     "name": "Lee Chun-Hsien",
-     "title": "SVP"
-    },
-    {
-     "name": "Lin Shyue-Shyh",
-     "title": "VP"
-    },
-    {
-     "name": "Lin Chris Horng-Dar",
-     "title": "VP and CIO"
-    },
-    {
-     "name": "Lu Chin-Sheng",
-     "title": "VP"
-    },
-    {
-     "name": "Wang Ying-Lang",
-     "title": "SVP"
-    },
-    {
-     "name": "Tien Bor-Zen",
-     "title": "VP"
-    },
-    {
-     "name": "Wei Che-Chia",
-     "title": "Chairman and CEO"
-    },
-    {
-     "name": "Wu Shien-Yang",
-     "title": "SVP"
-    },
-    {
-     "name": "Mii Yuh-Jier",
-     "title": "EVP and Co-COO"
-    },
-    {
-     "name": "Yuan Lipen",
-     "title": "VP"
-    },
-    {
-     "name": "Zhang Kevin Xiaoqiang",
-     "title": "SVP and Deputy Co-COO"
-    },
-    {
-     "name": "Yeap Choh Fei",
-     "title": "SVP"
-    },
-    {
-     "name": "Yoo Chue-San",
-     "title": "VP"
-    },
-    {
-     "name": "Wu Yi-Huang",
-     "title": "VP"
-    }
-   ],
-   "insider_type": "unknown",
-   "last_close": null,
-   "score": 76,
-   "why": [
-    "30 separate insiders buying (+48)",
-    "most senior buyer is CFO (+15)",
-    "one insider lifted their holding 34% (+5)",
-    "all buys inside 0 days (+8)"
    ],
    "flags": {}
   },
