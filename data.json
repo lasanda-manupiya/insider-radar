@@ -1,85 +1,16 @@
 {
- "generated": "2026-10-15T12:36:53+00:00",
+ "generated": "2026-10-16T12:19:24+00:00",
  "demo": false,
  "window_days": 30,
  "min_insiders": 3,
  "stats": {
   "buys": 2352,
   "sells": 13531,
-  "days": 43,
+  "days": 44,
   "filings": 23480
  },
- "clusters": [
-  {
-   "cik": "930236",
-   "ticker": "RWT",
-   "name": "REDWOOD TRUST INC",
-   "n_insiders": 3,
-   "n_trades": 3,
-   "total": 676698.1705,
-   "first": "2026-09-15",
-   "last": "2026-09-15",
-   "span_days": 0,
-   "planned": false,
-   "buyers": [
-    {
-     "name": "KUBICEK GREG H",
-     "title": "Director"
-    },
-    {
-     "name": "Abate Christopher J",
-     "title": "Chief Executive Officer"
-    },
-    {
-     "name": "Carillo Brooke",
-     "title": "Chief Financial Officer"
-    }
-   ],
-   "insider_type": "unknown",
-   "last_close": null,
-   "score": 57,
-   "why": [
-    "3 separate insiders buying (+24)",
-    "most senior buyer is CFO (+15)",
-    "one insider lifted their holding 65% (+10)",
-    "all buys inside 0 days (+8)"
-   ],
-   "flags": {}
-  }
- ],
- "emerging_clusters": [
-  {
-   "cik": "1606163",
-   "ticker": "LMB",
-   "name": "Limbach Holdings, Inc.",
-   "n_insiders": 2,
-   "n_trades": 6,
-   "total": 427996.2148000001,
-   "first": "2026-09-15",
-   "last": "2026-09-15",
-   "span_days": 0,
-   "planned": false,
-   "buyers": [
-    {
-     "name": "Horowitz Joshua",
-     "title": "Director"
-    },
-    {
-     "name": "Palm Global Small Cap Master Fund LP",
-     "title": "Insider"
-    }
-   ],
-   "insider_type": "unknown",
-   "last_close": null,
-   "score": 29,
-   "why": [
-    "2 separate insiders buying (+16)",
-    "most senior buyer is director (+5)",
-    "all buys inside 0 days (+8)"
-   ],
-   "flags": {}
-  }
- ],
+ "clusters": [],
+ "emerging_clusters": [],
  "recent": [
   {
    "ticker": "MAIR",
