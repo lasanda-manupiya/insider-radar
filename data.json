@@ -1,12 +1,12 @@
 {
- "generated": "2026-10-28T13:57:51+00:00",
+ "generated": "2026-10-29T14:10:56+00:00",
  "demo": false,
  "window_days": 30,
  "min_insiders": 3,
  "stats": {
   "buys": 2352,
   "sells": 13531,
-  "days": 52,
+  "days": 53,
   "filings": 23480
  },
  "clusters": [],
